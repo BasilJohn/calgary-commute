@@ -234,6 +234,48 @@ export function CommuteCalculator({ initial }: Props) {
           </div>
         </header>
 
+        <details className="group rounded-xl border border-zinc-200/90 bg-white/80 text-xs leading-relaxed text-zinc-600 shadow-sm backdrop-blur-sm dark:border-zinc-800/90 dark:bg-zinc-900/40 dark:text-zinc-400">
+          <summary className="commute-details-summary cursor-pointer list-none px-3 py-2.5 text-left sm:px-4 [&::-webkit-details-marker]:hidden">
+            <span className="font-medium text-zinc-800 dark:text-zinc-200">
+              Why carbon footprint matters
+            </span>
+            <span className="mt-0.5 block text-[11px] text-zinc-500 group-open:hidden dark:text-zinc-500">
+              Climate, choices, and what this calculator is for — expand to read
+            </span>
+          </summary>
+          <div className="border-t border-zinc-200/80 px-3 pb-3 pt-2 sm:px-4 dark:border-zinc-800/80">
+            <p className="text-[13px] leading-snug text-zinc-600 dark:text-zinc-400">
+              Your <strong className="font-medium text-zinc-700 dark:text-zinc-300">carbon footprint</strong> here means
+              greenhouse gases from an activity, usually expressed as{" "}
+              <strong className="font-medium text-zinc-700 dark:text-zinc-300">CO₂ equivalent (CO₂e)</strong> so different
+              gases can be compared in one number.
+            </p>
+            <ul className="mt-2.5 list-inside list-disc space-y-1.5 text-[13px] leading-snug marker:text-emerald-600/80 dark:marker:text-emerald-500/80">
+              <li>
+                <strong className="font-medium text-zinc-700 dark:text-zinc-300">Climate.</strong> CO₂e emissions
+                contribute to global heating; understanding scale helps connect daily choices to that bigger picture.
+              </li>
+              <li>
+                <strong className="font-medium text-zinc-700 dark:text-zinc-300">Choices.</strong> You don&apos;t need
+                perfect numbers — rough comparisons (like car vs C-Train) show where switching modes can matter most.
+              </li>
+              <li>
+                <strong className="font-medium text-zinc-700 dark:text-zinc-300">Scale.</strong> Many small shifts add
+                up; cities and countries track emissions the same way, at a larger level.
+              </li>
+              <li>
+                <strong className="font-medium text-zinc-700 dark:text-zinc-300">Fairness.</strong> Emissions and
+                impacts aren&apos;t shared equally worldwide; footprint thinking is one lens on responsibility.
+              </li>
+            </ul>
+            <p className="mt-2.5 text-[13px] leading-snug text-zinc-600 dark:text-zinc-400">
+              This page is an{" "}
+              <strong className="font-medium text-zinc-700 dark:text-zinc-300">educational estimate</strong> — not a
+              moral score and not a certified carbon inventory. Use it to explore orders of magnitude, not guilt.
+            </p>
+          </div>
+        </details>
+
         <div className="flex min-h-0 flex-1 flex-col gap-5 lg:grid lg:grid-cols-[minmax(min(100%,280px),1fr)_minmax(0,22rem)] lg:items-stretch lg:gap-6 xl:grid-cols-[minmax(min(100%,320px),1fr)_minmax(0,24rem)]">
           <section
             className={`commute-animate-in commute-delay-1 ${cardSurface} space-y-4 sm:space-y-5`}
