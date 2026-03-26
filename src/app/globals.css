@@ -1,0 +1,581 @@
+@import "tailwindcss";
+
+:root {
+  --background: #f4f4f5;
+  --foreground: #18181b;
+  --accent: #059669;
+  --range-track: #e4e4e7;
+  --range-fill: #059669;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-dm-sans), ui-sans-serif, system-ui, sans-serif,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --range-track: #3f3f46;
+    --range-fill: #10b981;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(16, 185, 129, 0.22);
+}
+
+input[type="range"].range-premium {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.25rem;
+  background: transparent;
+  cursor: pointer;
+}
+
+input[type="range"].range-premium::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--range-fill) 0%,
+    var(--range-fill) var(--range-pct, 0%),
+    var(--range-track) var(--range-pct, 0%),
+    var(--range-track) 100%
+  );
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+input[type="range"].range-premium::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.125rem;
+  height: 1.125rem;
+  margin-top: -0.3125rem;
+  border-radius: 9999px;
+  border: 2px solid white;
+  background: var(--range-fill);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+input[type="range"].range-premium::-webkit-slider-thumb:hover {
+  transform: scale(1.06);
+  box-shadow: 0 2px 8px rgba(5, 150, 105, 0.35);
+}
+
+input[type="range"].range-premium::-webkit-slider-thumb:active {
+  transform: scale(0.98);
+}
+
+input[type="range"].range-premium::-moz-range-track {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--range-track);
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+input[type="range"].range-premium::-moz-range-progress {
+  height: 0.5rem;
+  border-radius: 9999px;
+  background: var(--range-fill);
+}
+
+input[type="range"].range-premium::-moz-range-thumb {
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 9999px;
+  border: 2px solid white;
+  background: var(--range-fill);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  input[type="range"].range-premium::-webkit-slider-thumb {
+    border-color: #27272a;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
+  }
+  input[type="range"].range-premium::-moz-range-thumb {
+    border-color: #27272a;
+  }
+}
+
+@keyframes commute-fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes commute-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes commute-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Ambient background — slow drift (layout layer) */
+@keyframes commute-bg-drift {
+  0% {
+    transform: translate(0, 0) scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: translate(-3%, 4%) scale(1.06);
+    opacity: 0.92;
+  }
+}
+
+@keyframes commute-bg-drift-alt {
+  0% {
+    transform: translate(0, 0) scale(1.02);
+    opacity: 0.65;
+  }
+  100% {
+    transform: translate(4%, -2%) scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+/* Hero title — blur + rise */
+@keyframes commute-hero-blur-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Eyebrow badge — soft pulse */
+@keyframes commute-badge-glow {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.18);
+  }
+  50% {
+    box-shadow: 0 0 24px 4px rgba(16, 185, 129, 0.14);
+  }
+}
+
+/* Savings callout — light sweep */
+@keyframes commute-shimmer-sweep {
+  0% {
+    transform: translateX(-120%) skewX(-12deg);
+  }
+  100% {
+    transform: translateX(220%) skewX(-12deg);
+  }
+}
+
+/* Slow conic mesh — depth behind content */
+@keyframes commute-mesh-spin {
+  from {
+    transform: rotate(0deg) scale(1.15);
+  }
+  to {
+    transform: rotate(360deg) scale(1.15);
+  }
+}
+
+/* Top accent line on results card */
+@keyframes commute-accent-sweep {
+  0%,
+  100% {
+    background-position: 0% 50%;
+    opacity: 0.55;
+  }
+  50% {
+    background-position: 100% 50%;
+    opacity: 1;
+  }
+}
+
+/* Bar fills — soft “breathing” glow */
+@keyframes commute-bar-breathe-amber {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(245, 158, 11, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(245, 158, 11, 0.38),
+      inset 0 1px 0 rgba(255, 255, 255, 0.28);
+  }
+}
+
+@keyframes commute-bar-breathe-emerald {
+  0%,
+  100% {
+    box-shadow:
+      0 0 12px rgba(16, 185, 129, 0.22),
+      inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  }
+  50% {
+    box-shadow:
+      0 0 22px rgba(16, 185, 129, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.22);
+  }
+}
+
+/* Hero badge — slow gradient border */
+@keyframes commute-badge-border-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Key metric — soft pulse (annual avoided) */
+@keyframes commute-metric-emphasis {
+  0%,
+  100% {
+    text-shadow: 0 0 0 transparent;
+  }
+  50% {
+    text-shadow:
+      0 0 24px rgba(16, 185, 129, 0.22),
+      0 0 48px rgba(20, 184, 166, 0.08);
+  }
+}
+
+/* Results rows — staggered entrance */
+@keyframes commute-row-in {
+  from {
+    opacity: 0;
+    transform: translateX(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.commute-animate-in {
+  animation: commute-fade-in-up 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.commute-animate-fade {
+  animation: commute-fade-in 0.45s ease-out both;
+}
+
+.commute-animate-pop {
+  animation: commute-scale-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.commute-hero-title {
+  animation: commute-hero-blur-in 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.commute-hero-sub {
+  animation: commute-fade-in-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.12s both;
+}
+
+.commute-badge {
+  animation:
+    commute-fade-in 0.45s ease-out both,
+    commute-badge-glow 4.5s ease-in-out 0.75s infinite;
+}
+
+.commute-bg-ambient {
+  animation: commute-bg-drift 22s ease-in-out infinite alternate;
+}
+
+.commute-bg-ambient-alt {
+  animation: commute-bg-drift-alt 28s ease-in-out infinite alternate;
+}
+
+.commute-bg-mesh {
+  background: conic-gradient(
+    from 200deg at 50% 45%,
+    rgba(16, 185, 129, 0.07),
+    transparent 28%,
+    rgba(45, 212, 191, 0.05),
+    transparent 62%,
+    rgba(5, 150, 105, 0.06),
+    transparent 88%
+  );
+  animation: commute-mesh-spin 140s linear infinite;
+  opacity: 0.45;
+}
+
+@media (prefers-color-scheme: dark) {
+  .commute-bg-mesh {
+    opacity: 0.28;
+  }
+}
+
+.commute-panel-accent {
+  position: relative;
+}
+
+.commute-panel-accent::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  border-radius: 1rem 1rem 0 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(16, 185, 129, 0.35) 35%,
+    rgba(45, 212, 191, 0.45) 50%,
+    rgba(16, 185, 129, 0.35) 65%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: commute-accent-sweep 5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.commute-badge-ring {
+  display: inline-flex;
+  padding: 1px;
+  border-radius: 9999px;
+  background: linear-gradient(
+    120deg,
+    rgba(16, 185, 129, 0.55),
+    rgba(45, 212, 191, 0.35),
+    rgba(5, 150, 105, 0.5),
+    rgba(20, 184, 166, 0.4)
+  );
+  background-size: 240% 240%;
+  animation: commute-badge-border-shift 8s ease-in-out infinite;
+}
+
+.commute-details-summary {
+  position: relative;
+  padding-right: 1.75rem;
+}
+
+.commute-details-summary::after {
+  content: "";
+  position: absolute;
+  right: 0.65rem;
+  top: 50%;
+  width: 0.4rem;
+  height: 0.4rem;
+  border-right: 2px solid currentColor;
+  border-bottom: 2px solid currentColor;
+  transform: translateY(-50%) rotate(-45deg);
+  opacity: 0.45;
+  transition:
+    transform 0.3s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.2s ease;
+}
+
+details[open] .commute-details-summary::after {
+  transform: translateY(-50%) rotate(45deg);
+  opacity: 0.65;
+}
+
+.commute-stat-emphasis {
+  animation: commute-metric-emphasis 3.5s ease-in-out infinite;
+}
+
+.commute-result-row-in {
+  animation: commute-row-in 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.commute-result-row-in:nth-child(1) {
+  animation-delay: 0.04s;
+}
+.commute-result-row-in:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.commute-result-row-in:nth-child(3) {
+  animation-delay: 0.16s;
+}
+
+.commute-card-lift {
+  transition:
+    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 0.4s ease;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .commute-card-lift:hover {
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.98) inset,
+      0 24px 56px -24px rgba(15, 23, 42, 0.18);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (prefers-color-scheme: dark) {
+  .commute-card-lift:hover {
+    box-shadow:
+      0 1px 0 0 rgba(255, 255, 255, 0.04) inset,
+      0 28px 60px -20px rgba(0, 0, 0, 0.65);
+  }
+}
+
+.commute-shimmer-box {
+  position: relative;
+  overflow: hidden;
+}
+
+.commute-shimmer-box::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    105deg,
+    transparent 35%,
+    rgba(255, 255, 255, 0.22) 50%,
+    transparent 65%
+  );
+  width: 55%;
+  animation: commute-shimmer-sweep 4.5s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .commute-shimmer-box::after {
+    background: linear-gradient(
+      105deg,
+      transparent 35%,
+      rgba(255, 255, 255, 0.06) 50%,
+      transparent 65%
+    );
+  }
+}
+
+.commute-bar-amber {
+  box-shadow:
+    0 0 16px rgba(245, 158, 11, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+
+.commute-bar-emerald {
+  box-shadow:
+    0 0 16px rgba(16, 185, 129, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .commute-bar-amber {
+    animation: commute-bar-breathe-amber 3.2s ease-in-out infinite;
+  }
+
+  .commute-bar-emerald {
+    animation: commute-bar-breathe-emerald 3.2s ease-in-out 0.35s infinite;
+  }
+}
+
+.commute-delay-1 {
+  animation-delay: 0.06s;
+}
+.commute-delay-2 {
+  animation-delay: 0.12s;
+}
+.commute-delay-3 {
+  animation-delay: 0.18s;
+}
+.commute-delay-4 {
+  animation-delay: 0.24s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .commute-animate-in,
+  .commute-animate-fade,
+  .commute-animate-pop,
+  .commute-hero-title,
+  .commute-hero-sub {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+  .commute-badge {
+    animation: none !important;
+    box-shadow: none !important;
+  }
+  .commute-bg-ambient,
+  .commute-bg-ambient-alt,
+  .commute-bg-mesh {
+    animation: none !important;
+    transform: none;
+    opacity: 1;
+  }
+  .commute-panel-accent::before {
+    animation: none !important;
+    opacity: 0.6;
+  }
+  .commute-badge-ring {
+    animation: none !important;
+    background-position: 50% 50%;
+  }
+  .commute-details-summary::after {
+    transition: none;
+  }
+  .commute-stat-emphasis {
+    animation: none !important;
+    text-shadow: none;
+  }
+  .commute-result-row-in {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+  }
+  .commute-card-lift:hover {
+    transform: none;
+  }
+  .commute-shimmer-box::after {
+    display: none;
+  }
+  .commute-bar-amber,
+  .commute-bar-emerald {
+    animation: none !important;
+    box-shadow: none;
+  }
+  .commute-delay-1,
+  .commute-delay-2,
+  .commute-delay-3,
+  .commute-delay-4 {
+    animation-delay: 0s;
+  }
+}
